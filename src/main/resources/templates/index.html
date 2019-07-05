@@ -5,9 +5,13 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
+		th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
+
+	<script src="/webjars/jquery/3.2.1/jquery.min.js"></script>
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
@@ -33,19 +37,23 @@
 									<tr>
 										<th>ID</th>
 										<th>Description</th>
+										<th>View</th>
 									</tr>
 								</thead>
 								<tr th:remove="all">
-									<td th:text="${recipe.id}">123</td>
-									<td th:text="${recipe.description}">Tasty Goodnees 1</td>
+									<td>121</td>
+									<td>Tasty Goodnees 1</td>
+									<td><a href="#">View</a></td>
 								</tr>
 								<tr th:remove="all">
-									<td th:text="${recipe.id}">12333</td>
-									<td th:text="${recipe.description}">Tasty Goodnees 2</td>
+									<td>122</td>
+									<td>Tasty Goodnees 2</td>
+									<td><a href="#">View</a></td>
 								</tr>
-								<tr th:each="recipe : ${recipes}">
-									<td th:text="${recipe.id}">334</td>
+								<tr th:remove="all">
+									<td th:text="${recipe.id}">123</td>
 									<td th:text="${recipe.description}">Tasty Goodnees 3</td>
+									<td><a href="#" th:href="@{/recipe/show/ + ${recipe.id}}">View</a></td>
 								</tr>
 							</table>
 						</div>
