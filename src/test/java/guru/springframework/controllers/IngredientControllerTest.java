@@ -14,8 +14,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.anyLong;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -140,6 +140,15 @@ public class IngredientControllerTest {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/recipe/2/ingredient/3/show"));
 
+    }
+    
+    @Test
+    public void testDeleteAction() throws Exception {
+    	mockMvc.perform(get("/recipe/2/ingredient/3/delete"))
+    		.andExpect(status().is3xxRedirection())
+    		.andExpect(view().name("redirect:/recipe/2/ingredients"));
+    	
+    	verify(ingredientService, times(1)).deleteById(anyLong(), anyLong());
     }
     
     
