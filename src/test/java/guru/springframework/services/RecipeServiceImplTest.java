@@ -6,6 +6,7 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.anyLong;
 
 import java.util.HashSet;
@@ -20,6 +21,7 @@ import org.mockito.MockitoAnnotations;
 import guru.springframework.converters.RecipeCommandToRecipe;
 import guru.springframework.converters.RecipeToRecipeCommand;
 import guru.springframework.domain.Recipe;
+import guru.springframework.exceptions.NotFoundException;
 import guru.springframework.repositories.RecipeRepository;
 import guru.springframework.services.RecipeServiceImpl;
 
@@ -59,6 +61,17 @@ public class RecipeServiceImplTest {
 		verify(recipeRepository, never()).findAll();
 	}
 
+    @Test(expected = NotFoundException.class)
+    public void getRecipeByIdNotFound() throws Exception{
+    	
+    	Optional<Recipe> recipeOptional = Optional.empty();
+    	
+    	when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+    	
+    	Recipe recipeReturned = recipeService.findById(1L);
+    	
+    	//should go boom
+    }
 	@Test
 	public void getRecipesTest() throws Exception {
 
